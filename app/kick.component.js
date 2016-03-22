@@ -11,28 +11,31 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var EditTaskDetailsComponent;
+    var kickComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            EditTaskDetailsComponent = (function () {
-                function EditTaskDetailsComponent() {
+            kickComponent = (function () {
+                function kickComponent() {
                 }
-                EditTaskDetailsComponent = __decorate([
+                kickComponent.prototype.toggleKick = function (kickState) {
+                    this.task.kick = kickState;
+                };
+                kickComponent = __decorate([
                     core_1.Component({
-                        selector: 'edit-task-details',
+                        selector: 'kick-audio',
                         inputs: ['task'],
-                        template: "\n  <div class=\"task-form\">\n   <h3>Edit Description: </h3>\n   <input [(ngModel)]=\"task.description\" class=\"col-sm-8 input-lg task-form\"/>\n  </div>\n  "
+                        template: "\n  <audio controls auto play=\"true\" *ngIf task. === tasks[1]> <source src=\"./../resources/audio/kick.wav\"/>\n  </audio>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
-                ], EditTaskDetailsComponent);
-                return EditTaskDetailsComponent;
+                ], kickComponent);
+                return kickComponent;
             }());
-            exports_1("EditTaskDetailsComponent", EditTaskDetailsComponent);
+            exports_1("kickComponent", kickComponent);
         }
     }
 });
-//# sourceMappingURL=edit-task-details.component.js.map
+//# sourceMappingURL=kick.component.js.map

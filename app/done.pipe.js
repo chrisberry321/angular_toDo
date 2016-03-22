@@ -11,28 +11,43 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var EditTaskDetailsComponent;
+    var DonePipe;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            EditTaskDetailsComponent = (function () {
-                function EditTaskDetailsComponent() {
+            DonePipe = (function () {
+                function DonePipe() {
                 }
-                EditTaskDetailsComponent = __decorate([
-                    core_1.Component({
-                        selector: 'edit-task-details',
-                        inputs: ['task'],
-                        template: "\n  <div class=\"task-form\">\n   <h3>Edit Description: </h3>\n   <input [(ngModel)]=\"task.description\" class=\"col-sm-8 input-lg task-form\"/>\n  </div>\n  "
+                DonePipe.prototype.transform = function (input, args) {
+                    var desiredDoneState = args[0];
+                    if (desiredDoneState === "done") {
+                        return input.filter(function (task) {
+                            return task.done;
+                        });
+                    }
+                    else if (desiredDoneState === "notDone") {
+                        return input.filter(function (task) {
+                            return !task.done;
+                        });
+                    }
+                    else {
+                        return input;
+                    }
+                };
+                DonePipe = __decorate([
+                    core_1.Pipe({
+                        name: "done",
+                        pure: false
                     }), 
                     __metadata('design:paramtypes', [])
-                ], EditTaskDetailsComponent);
-                return EditTaskDetailsComponent;
+                ], DonePipe);
+                return DonePipe;
             }());
-            exports_1("EditTaskDetailsComponent", EditTaskDetailsComponent);
+            exports_1("DonePipe", DonePipe);
         }
     }
 });
-//# sourceMappingURL=edit-task-details.component.js.map
+//# sourceMappingURL=done.pipe.js.map

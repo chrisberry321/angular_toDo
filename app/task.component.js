@@ -21,11 +21,14 @@ System.register(['angular2/core'], function(exports_1, context_1) {
             TaskComponent = (function () {
                 function TaskComponent() {
                 }
+                TaskComponent.prototype.toggleDone = function (setState) {
+                    this.task.done = setState;
+                };
                 TaskComponent = __decorate([
                     core_1.Component({
                         selector: 'task-display',
                         inputs: ['task'],
-                        template: "\n  <h3>{{ task.description}}</h3>\n  "
+                        template: "\n  <div class=\"flip4fun\">\n    <input *ngIf=\"task.done\" type=\"checkbox\" checked (click)=\"toggleDone(false)\"/>\n    <input *ngIf=\"!task.done\" type=\"checkbox\" (click)=\"toggleDone(true)\"/>\n    <label>{{ task.description }}</label>\n  </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], TaskComponent);

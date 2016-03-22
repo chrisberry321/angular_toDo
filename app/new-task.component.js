@@ -11,28 +11,34 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var EditTaskDetailsComponent;
+    var NewTaskComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            EditTaskDetailsComponent = (function () {
-                function EditTaskDetailsComponent() {
+            NewTaskComponent = (function () {
+                function NewTaskComponent() {
+                    this.onSubmitNewTask = new core_1.EventEmitter();
                 }
-                EditTaskDetailsComponent = __decorate([
+                NewTaskComponent.prototype.addTask = function (userDescription) {
+                    this.onSubmitNewTask.emit(userDescription.value);
+                    console.log(userDescription.value);
+                    userDescription.value = "";
+                };
+                NewTaskComponent = __decorate([
                     core_1.Component({
-                        selector: 'edit-task-details',
-                        inputs: ['task'],
-                        template: "\n  <div class=\"task-form\">\n   <h3>Edit Description: </h3>\n   <input [(ngModel)]=\"task.description\" class=\"col-sm-8 input-lg task-form\"/>\n  </div>\n  "
+                        selector: 'new-task',
+                        outputs: ['onSubmitNewTask'],
+                        template: "\n  <div class=\"task-form\">\n    <h3>Create Task:</h3>\n    <input placeholder=\"Description\" class=\"col-sm-8 input-lg\" #newDescription>\n    <button (click)=\"addTask(newDescription)\" class=\"btn-success btn-lg add-button\">Add</button>\n  </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
-                ], EditTaskDetailsComponent);
-                return EditTaskDetailsComponent;
+                ], NewTaskComponent);
+                return NewTaskComponent;
             }());
-            exports_1("EditTaskDetailsComponent", EditTaskDetailsComponent);
+            exports_1("NewTaskComponent", NewTaskComponent);
         }
     }
 });
-//# sourceMappingURL=edit-task-details.component.js.map
+//# sourceMappingURL=new-task.component.js.map
